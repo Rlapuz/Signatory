@@ -1,9 +1,11 @@
 import {BsGrid, BsBox, BsCalendar4Event, BsPersonGear,BsBell } from 'react-icons/bs'
 import {SlCloudUpload} from 'react-icons/sl'
 import Link from "next/link";
+import { useRouter } from "next/router";
 import Logout from '../logout/Logout';
 
 const Menus = () => {
+    
     return (
         <div className="flex flex-col h-full">
                         <ul className="whitespace-pre px-3 text-[0.9rem] py-5 flex flex-col gap-1 font-medium overflow-x-hidden ">
