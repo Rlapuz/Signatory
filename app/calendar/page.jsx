@@ -1,10 +1,10 @@
-'use client'
+// 'use client'
 
 import Navbar from 'app/components/navbar/Navbar';
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
+// import FullCalendar from '@fullcalendar/react';
+// import dayGridPlugin from '@fullcalendar/daygrid';
+// import timeGridPlugin from '@fullcalendar/timegrid';
+// import interactionPlugin from '@fullcalendar/interaction';
 
 export const metadata = {
   title: 'Raymund | Calendar',
@@ -14,7 +14,11 @@ const page = () => {
     <>
       <div className='w-full flex flex-col gap-7'>
         <Navbar />
-          <main className="w-full h-4/5">
+
+          <main>
+              Calendar
+          </main>
+          {/* <main className="w-full h-4/5">
             <FullCalendar
               plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
               initialView="dayGridMonth"
@@ -26,7 +30,7 @@ const page = () => {
               height="80%"
               themeSystem="tailwind"
             />
-          </main>
+          </main> */}
       </div>
     </>
     
