@@ -1,10 +1,8 @@
 // 'use client'
 
 import Navbar from 'app/components/navbar/Navbar';
-// import FullCalendar from '@fullcalendar/react';
-// import dayGridPlugin from '@fullcalendar/daygrid';
-// import timeGridPlugin from '@fullcalendar/timegrid';
-// import interactionPlugin from '@fullcalendar/interaction';
+import Calen from '../components/calendar API/Calen';
+
 
 export const metadata = {
   title: 'Raymund | Calendar',
@@ -18,19 +16,9 @@ const page = () => {
           <main>
               Calendar
           </main>
-          {/* <main className="w-full h-4/5">
-            <FullCalendar
-              plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-              initialView="dayGridMonth"
-              headerToolbar={{
-                start: 'today prev,next',
-                center: 'title',
-                end: 'dayGridMonth,timeGridWeek,timeGridDay',
-              }}
-              height="80%"
-              themeSystem="tailwind"
-            />
-          </main> */}
+          <main className="w-full h-4/5">
+            <Calen />
+          </main>
       </div>
     </>
     

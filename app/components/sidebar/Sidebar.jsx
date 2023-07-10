@@ -111,7 +111,7 @@ const Sidebar = () => {
             </motion.div>
       </motion.div>
               {/* the menu icon for mobile */}
-              <div className="m-3 md:hidden" onClick={()=> setIsOpen(true)}>
+              <div className="ml-2 mt-3 md:hidden flex absolute" onClick={()=> setIsOpen(true)}>
                 <FiMenu size={25}/>
               </div>
     </aside>
