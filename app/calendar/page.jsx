@@ -17,7 +17,7 @@ const page = () => {
               Calendar
           </main>
           <main className="w-full h-4/5">
-            <Calen />
+            {/* <Calen /> */}
           </main>
       </div>
     </>
