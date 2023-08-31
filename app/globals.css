@@ -24,24 +24,17 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb)); */
-  background-color: whitesmoke;
+  background-color: rgb(241, 238, 238);
 }
 
 .link {
-  @apply p-2.5 flex rounded-md gap-6 items-center md:cursor-pointer cursor-default duration-300 font-medium;
+  @apply p-2.5 flex rounded-md gap-6 items-center md:cursor-pointer cursor-default duration-300 font-medium hover:bg-blue-400;
 }
 
-.link.active {
-  @apply bg-blue-100 text-blue-600;
+.active {
+  @apply bg-blue-900 text-white;
 }
 
 .lot {
   background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
-}
-
-.bsu {
-  z-index: -1;
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
 }

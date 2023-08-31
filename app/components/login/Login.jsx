@@ -1,10 +1,38 @@
-import React from "react";
-import Image from "next/image";
+"use client";
 
-export const metadata = {
-  title: "Raymund | Login",
-};
-const page = () => {
+import Image from "next/image";
+import Link from "next/link";
+// import { useState } from "react";
+// import { useRouter } from "next/navigation";
+// import { signIn } from "next-auth/react";
+
+export const Login = () => {
+  // const router = useRouter();
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [error, setError] = useState("");
+
+  // const handleLogin = async (event) => {
+  //   event.preventDefault();
+
+  //   try {
+  //     const result = await signIn("credentials", {
+  //       redirect: false,
+  //       email,
+  //       password,
+  //     });
+
+  //     if (result.error) {
+  //       setError("Invalid email or password.");
+  //     } else {
+  //       // Redirect to the dashboard or the desired page
+  //       router.push("/dashboard");
+  //     }
+  //   } catch (error) {
+  //     setError("An error occurred during login.");
+  //     console.error(error);
+  //   }
+  // };
   return (
     <section className="gradient-form h-screen bg-neutral-200 dark:bg-neutral-700 flex items-center justify-center">
       <div className="container h-full p-10">
@@ -14,7 +42,7 @@ const page = () => {
               <div className="g-0 lg:flex lg:flex-wrap">
                 {/* Left column container */}
                 <div className="px-4 md:px-0 lg:w-6/12">
-                  <div className="md:mx-6 md:p-12">
+                  <div className="pt-6 md:mx-6 md:p-12">
                     {/* Logo */}
                     <div className="text-center">
                       <Image
@@ -40,6 +68,8 @@ const page = () => {
                           className="peer block min-h-auto w-full rounded border-0 bg-transparent px-3 py-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                           id="exampleFormControlInput1"
                           placeholder="email"
+                          // value={email}
+                          // onChange={(e) => setEmail(e.target.value)}
                         />
                         <label
                           htmlFor="exampleFormControlInput1"
@@ -57,6 +87,9 @@ const page = () => {
                           className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                           id="exampleFormControlInput11"
                           placeholder="Password"
+                          // value={password}
+                          // onChange={(e) => setPassword(e.target.value)}
+                          required
                         />
                         <label
                           htmlFor="exampleFormControlInput11"
@@ -69,14 +102,23 @@ const page = () => {
                       <div className="mb-12 pb-1 pt-1 text-center">
                         <button
                           className="mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] lot"
-                          type="button"
+                          type="submit"
                           data-te-ripple-init
                           data-te-ripple-color="light">
                           Log in
                         </button>
-
+                        {/* {error && <p className="text-red-500">{error}</p>} */}
                         {/* Forgot password link */}
                         {/* <a href="#!">Forgot password?</a> */}
+
+                        <div>
+                          <p>or</p>
+                          <Link
+                            href="/signin"
+                            className=" text-blue-800">
+                            Signin
+                          </Link>
+                        </div>
                       </div>
                     </form>
                   </div>
@@ -85,14 +127,20 @@ const page = () => {
                 {/* Right column container with background and description */}
                 <div className="flex items-center rounded-b-lg lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none lot">
                   <div className="px-4 py-6 text-white md:mx-6 md:p-12">
-                    <h4 className="mb-6 text-xl font-semibold">
+                    <h4 className="mb-6 text-xl font-semibold text-center">
                       Meneses Campus
                     </h4>
-                    <p className="text-sm">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    <p className="text-sm text-justify">
+                      Welcome to Meneses Campus, your school and a satellite of
+                      Bulacan State University. We take pride in providing
+                      quality education, fostering a supportive learning
+                      environment, and nurturing the growth of our students.
+                      With a focus on academic excellence and a wide range of
+                      extracurricular activities, Meneses Campus aims to prepare
+                      you for a successful future. Join our vibrant community
+                      and embark on a journey of knowledge and personal
+                      development. Discover your potential at Meneses Campus,
+                      where possibilities are endless.
                     </p>
                   </div>
                 </div>
@@ -104,5 +152,3 @@ const page = () => {
     </section>
   );
 };
-
-export default page;

@@ -1,16 +1,22 @@
-import {RiLogoutBoxLine} from 'react-icons/ri'
+"use client";
+
+import { signOut } from "next-auth/react";
+import { RiLogoutBoxLine } from "react-icons/ri";
 
 const Logout = () => {
   return (
-    <div className='border-b border-slate-300 py-3 mx-3'>
-        <button className={'link'}>
-            <RiLogoutBoxLine size={23} className="min-w-max" />
-                <span className='whitespace-pre px-1 text-[0.9rem] py-3 font-medium overflow-x-hidden '>
-                    Logout
-                </span>
-        </button>
+    <div className="whitespace-pre px-3 text-[0.9rem] py-5 flex flex-col gap-1 font-medium overflow-x-hidden">
+      <button
+        onClick={signOut}
+        className="link hover:bg-red-500">
+        <RiLogoutBoxLine
+          size={23}
+          className="min-w-max"
+        />
+        Logout
+      </button>
     </div>
-  )
-}
+  );
+};
 
-export default Logout
+export default Logout;

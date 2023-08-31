@@ -1,4 +1,5 @@
-import Drag from "../components/drag & drop/Drag";
+import { Drop } from "../components/drag & drop/Drop";
+import { UploadFiles } from "../components/drag & drop/UploadFiles";
 import Navbar from "../components/navbar/Navbar";
 
 export const metadata = {
@@ -7,11 +8,12 @@ export const metadata = {
 const page = () => {
   return (
     <>
-      <div className="w-full flex flex-col gap-7">
+      <div className="w-full flex flex-col gap-7 mb-5">
         <Navbar />
         <main className="">
-          <h1 className="font-medium">Upload Files</h1>
-          <div className="mt-10">{/* <Drag /> */}</div>
+          <div className="">
+            <Drop />
+          </div>
         </main>
       </div>
     </>
