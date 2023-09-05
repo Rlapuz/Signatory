@@ -1,6 +1,5 @@
 import { Schema, model, models } from "mongoose";
 
-
 const fileSchema = new Schema({
     filename: {
         type: String,
@@ -18,9 +17,13 @@ const fileSchema = new Schema({
         type: String,
         required: true,
     },
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'user', // Reference to the User model
+        required: true,
+    },
 }, { timestamps: true });
 
 const FileModel = models.File || model('File', fileSchema);
 
 export default FileModel;
-

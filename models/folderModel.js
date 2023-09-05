@@ -1,10 +1,14 @@
 import { Schema, model, models } from "mongoose";
 
-const folderShcema = new Schema({
+const folderSchema = new Schema({
     name: String,
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'user', // Reference to the User model
+        required: true,
+    },
 }, { timestamps: true });
 
-
-const FolderModel = models.Folder || model('Folder', folderShcema)
+const FolderModel = models.Folder || model('Folder', folderSchema);
 
 export default FolderModel;

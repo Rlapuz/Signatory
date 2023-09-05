@@ -12,7 +12,6 @@ export const ErrorModal = ({ updateFolders }) => {
     <>
       <div className="flex flex-row-reverse mr-5">
         <AddFolder handleShowModal={() => handleShowModal(updateFolders)} />
-
         <Modal
           isVisible={showModal}
           onClose={handleCloseModal}

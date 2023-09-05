@@ -26,7 +26,7 @@ export const authOptions = {
 
                 if (existingUser) {
                     // User exists, authenticate
-                    return true;
+                    return existingUser;
                 }
                 // User does not exist, create a new user
                 const newUser = new User({
@@ -100,3 +100,4 @@ async function getUserByEmail({ email }) {
     if (!user) throw new Error('Email does not exist!')
     return { ...user._doc, _id: user._id.toString() }
 }
+

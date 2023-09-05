@@ -1,4 +1,4 @@
-// 'use client'
+"use client";
 
 import Navbar from "app/components/navbar/Navbar";
 import Calen from "../components/calendar API/Calen";

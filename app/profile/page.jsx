@@ -1,3 +1,5 @@
+"use client";
+
 import Navbar from "../components/navbar/Navbar";
 import ProfileUpdate from "../components/profile-update/ProfileUpdate";
 

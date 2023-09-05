@@ -8,7 +8,8 @@ import { BiLeftArrowAlt } from "react-icons/bi";
 export const metadata = {
   title: "Raymund | Folder",
 };
-const page = () => {
+
+const page = ({ params }) => {
   return (
     <>
       <div className="w-full flex flex-col gap-7">
@@ -31,7 +32,7 @@ const page = () => {
                   size={20}
                   className="opacity-75"
                 />
-                <h3 className="ml-0">FOLDER 1</h3>
+                <h3 className="ml-0">{params.id}</h3>
               </div>
               <BiDotsVerticalRounded size={20} />
             </Link>
