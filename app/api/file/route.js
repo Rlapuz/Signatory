@@ -1,13 +1,20 @@
 import FileModel from "@/models/fileModel";
 import connectDB from "@/utils/database";
 import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/app/api/auth/[...nextauth]/route"
+
+
+
 
 // POST 
 export async function POST(request) {
     try {
-        const { filename, size, url, mimetype, userId } = await request.json();
+        const session = await getServerSession(authOptions)
+
+        const { filename, size, url, mimetype } = await request.json();
         await connectDB();
-        await FileModel.create({ filename, size, url, mimetype, userId });
+        await FileModel.create({ filename, size, url, mimetype, userId: session.user._id });
         return NextResponse.json({ message: "File Created" }, { status: 201 });
     } catch (error) {
         console.error("Error while creating file:", error);

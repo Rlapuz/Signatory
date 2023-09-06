@@ -23,10 +23,13 @@ export const authOptions = {
         async signIn({ user, account, profile, email, credentials }) {
             if (account.type === 'oauth') {
                 const existingUser = await User.findOne({ email: profile.email });
+                console.log("Existing User", existingUser)
 
                 if (existingUser) {
                     // User exists, authenticate
-                    return existingUser;
+                    // return existingUser;
+                    return true;
+
                 }
                 // User does not exist, create a new user
                 const newUser = new User({
@@ -46,21 +49,25 @@ export const authOptions = {
 
             return true;
         },
-        async jwt({ token, trigger, session }) {
 
+
+        async jwt({ token, trigger, session }) {
             if (trigger === 'update') {
                 token.user.name = session.name;
                 token.user.image = session.image;
             } else {
                 const user = await getUserByEmail({ email: token.email })
                 token.user = user;
+                // console.log("Token else", user)
             }
 
             return token;
         },
         async session({ session, token }) {
             session.user = token.user;
+            // console.log("Session ewan ", session)
             return session;
+
         },
     }
 

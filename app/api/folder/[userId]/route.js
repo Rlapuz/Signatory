@@ -1,9 +1,9 @@
 // params file/[userId] , create new folder for this route (dynamic) 
 
-import FileModel from "@/models/fileModel";
 import connectDB from "@/utils/database";
 import { NextResponse } from "next/server";
 import { useSession } from "next-auth/react";
+import FolderModel from "@/models/folderModel";
 
 
 
@@ -17,10 +17,10 @@ export async function GET(req) {
         console.log("Received userId:", userId);
 
         await connectDB();
-        const files = await FileModel.find({ userId });
-        return NextResponse.json(files);
+        const folders = await FolderModel.find({ userId });
+        return NextResponse.json(folders);
     } catch (error) {
-        console.error("Error while getting files:", error);
-        return NextResponse.json({ message: "Failed to get files" }, { status: 500 });
+        console.error("Error while getting folders:", error);
+        return NextResponse.json({ message: "Failed to get folders" }, { status: 500 });
     }
 }

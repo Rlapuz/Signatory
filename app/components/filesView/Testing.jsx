@@ -3,28 +3,40 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { BiDotsVerticalRounded } from "react-icons/bi";
+import { HiFolderPlus } from "react-icons/hi";
 import { FaFolder } from "react-icons/fa";
-import { getSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import { handleCreate } from "@/actions/modalAction";
 
 export const Testing = () => {
   const [folders, setFolders] = useState([]);
   const [error, setError] = useState(null);
   const [showOptions, setShowOptions] = useState({});
 
+  const { data: session } = useSession();
+
   useEffect(() => {
     const fetchFolders = async () => {
       try {
-        const session = await getSession();
         if (session) {
-          const userId = session.user.id; // Get the user's ID from the session
-          const res = await fetch("http://localhost:3000/api/folder", {
-            cache: "no-store",
-          });
+          const userId = session.user._id; // Get the user's ID from the session
+          const res = await fetch(
+            `http://localhost:3000/api/folder?userId=${userId}`,
+            {
+              cache: "no-store",
+            }
+          );
           if (!res.ok) {
             throw new Error("Something went wrong");
           }
           const foldersData = await res.json();
-          setFolders(foldersData);
+
+          // Filter files that match the user's ID
+          const filteredFolders = foldersData.filter(
+            (file) => file.userId === userId
+          );
+
+          setFolders(filteredFolders);
         }
       } catch (error) {
         console.log(error);
@@ -34,14 +46,42 @@ export const Testing = () => {
 
     fetchFolders();
 
-    // // Refresh the folder list every 1 seconds (adjust the interval as needed)
-    // const refreshInterval = setInterval(fetchFolders, 1000);
+    // Refresh the folder list every 1 seconds (adjust the interval as needed)
+    const refreshInterval = setInterval(fetchFolders, 1000);
 
-    // return () => {
-    //   // Clean up the interval when the component unmounts
-    //   clearInterval(refreshInterval);
-    // };
-  }, []);
+    return () => {
+      // Clean up the interval when the component unmounts
+      clearInterval(refreshInterval);
+    };
+  }, [session]);
+
+  // Function to create a new folder
+  // const createFolder = async () => {
+  //   try {
+  //     const newFolderName = prompt("Enter folder name:");
+  //     if (!newFolderName) return; // User canceled or didn't enter a name
+
+  //     // Create the new folder
+  //     const response = await fetch("http://localhost:3000/api/folder", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ name: newFolderName }),
+  //     });
+
+  //     if (!response.ok) {
+  //       throw new Error("Failed to create folder");
+  //     }
+
+  //     // Fetch the updated list of folders
+  //     const updatedFolders = await fetchFolders();
+  //     setFolders(updatedFolders);
+  //   } catch (error) {
+  //     console.error(error);
+  //     alert("Error creating folder: " + error.message);
+  //   }
+  // };
 
   const deleteFolder = async (id) => {
     try {

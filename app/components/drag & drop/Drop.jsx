@@ -44,7 +44,7 @@ export const Drop = () => {
           },
           body: JSON.stringify({ filename, size, url, mimetype }),
         });
-
+        // console.log("Response", response);
         if (response.ok) {
           console.log("File uploaded successfully!");
           setUploadedFile({ filename, size, url, mimetype });

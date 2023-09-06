@@ -4,7 +4,7 @@ const folderSchema = new Schema({
     name: String,
     userId: {
         type: Schema.Types.ObjectId,
-        ref: 'user', // Reference to the User model
+        ref: 'User', // Reference to the User model
         required: true,
     },
 }, { timestamps: true });

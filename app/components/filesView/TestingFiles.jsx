@@ -12,33 +12,36 @@ export const TestingFiles = () => {
   const [files, setFiles] = useState([]);
   const [error, setError] = useState(null);
   const [showOptions, setShowOptions] = useState({});
-  const [userId, setUserId] = useState();
+  // const [userId, setUserId] = useState();
 
   const { data: session } = useSession();
 
   useEffect(() => {
     const fetchFiles = async () => {
       try {
-        console.log(session);
-        console.log(session.user);
-        console.log(session.user[""].id);
-
-        setUserId(session.user._id);
-        console.log(userId);
+        // setUserId(session.user._id);
         if (session) {
           const userId = session.user._id; // Get the user's ID from the session
+          // console.log("Check userId", userId);
+          // console.log("Session", session);
 
           const res = await fetch(
-            `http://localhost:3000/api/file/${userId}`
-            // {
-            //   cache: "no-store",
-            // }
+            `http://localhost:3000/api/file?userId=${userId}`,
+            {
+              cache: "no-store",
+            }
           );
           if (!res.ok) {
             throw new Error("Something went wrong");
           }
           const filesData = await res.json();
-          setFiles(filesData);
+
+          // Filter files that match the user's ID
+          const filteredFiles = filesData.filter(
+            (file) => file.userId === userId
+          );
+
+          setFiles(filteredFiles);
         }
       } catch (error) {
         console.error(error);
@@ -48,13 +51,13 @@ export const TestingFiles = () => {
 
     fetchFiles();
 
-    // // Refresh the file list every 1 seconds (adjust the interval as needed)
-    // const refreshInterval = setInterval(fetchFiles, 1000);
+    // Refresh the file list every 1 seconds (adjust the interval as needed)
+    const refreshInterval = setInterval(fetchFiles, 1000);
 
-    // return () => {
-    //   // Clean up the interval when the component unmounts
-    //   clearInterval(refreshInterval);
-    // };
+    return () => {
+      // Clean up the interval when the component unmounts
+      clearInterval(refreshInterval);
+    };
   }, [session]);
 
   // Function to delete a file by its ID

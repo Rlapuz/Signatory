@@ -1,18 +1,19 @@
 import FolderModel from "@/models/folderModel";
 import connectDB from "@/utils/database";
 import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/app/api/auth/[...nextauth]/route"
+
 
 
 // POST
 export async function POST(request) {
     try {
+        const session = await getServerSession(authOptions)
         const { name } = await request.json();
         await connectDB();
-        await FolderModel.create({ name });
-
-        // Fetch the updated list of folders
-        const folders = await FolderModel.find();
-        return NextResponse.json({ message: "Folder Created", folders }, { status: 201 });
+        await FolderModel.create({ name, userId: session.user._id });
+        return NextResponse.json({ message: "Folder Created" }, { status: 201 });
     } catch (error) {
         console.error("Error while creating folder:", error);
         return NextResponse.json({ message: "Failed to create folder" }, { status: 500 });
